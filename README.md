@@ -1,1 +1,1 @@
-2024-2025 high school sports analytics research project
+2024-2025 High School Sports Analytics Research Project
