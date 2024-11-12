@@ -42,6 +42,7 @@ data = {
 }
 
 df = pd.DataFrame(data)
+#print(df)
 
 #Win/Loss Indicator (in terms of OVHS)
 df['Win/Loss'] = df.apply(lambda row: 'Win' if row['Points OVHS'] > row['Points Opponent'] else 'Loss', axis=1)
@@ -50,4 +51,52 @@ column_order.insert(3, column_order.pop(column_order.index('Win/Loss')))
 df['Win_Loss_Numeric'] = df['Win/Loss'].apply(lambda x: 1 if x == 'Win' else 0)
 df = df[column_order]
 
-df
+
+
+#POINTS CORRELATION
+if 'Win_Loss_Numeric' not in df.columns:
+    df['Win_Loss_Numeric'] = df['Win/Loss'].apply(lambda x: 1 if x == 'Win' else 0)
+correlation_points_wins = df['Points OVHS'].corr(df['Win_Loss_Numeric'])
+print(f"Correlation between points and wins: {correlation_points_wins:.2f}")
+
+#REBOUNDS CORRELATION
+if 'Win_Loss_Numeric' not in df.columns:
+    df['Win_Loss_Numeric'] = df['Win/Loss'].apply(lambda x: 1 if x == 'Win' else 0)
+correlation_rebounds_wins = df['Rebounds OVHS'].corr(df['Win_Loss_Numeric'])
+print(f"Correlation between rebounds and wins: {correlation_rebounds_wins:.2f}")
+
+#ASSISTS CORRELATION
+if 'Win_Loss_Numeric' not in df.columns:
+    df['Win_Loss_Numeric'] = df['Win/Loss'].apply(lambda x: 1 if x == 'Win' else 0)
+correlation_assists_wins = df['Assists OVHS'].corr(df['Win_Loss_Numeric'])
+print(f"Correlation between assists and wins: {correlation_assists_wins:.2f}")
+
+#STEALS CORRELATION
+if 'Win_Loss_Numeric' not in df.columns:
+    df['Win_Loss_Numeric'] = df['Win/Loss'].apply(lambda x: 1 if x == 'Win' else 0)
+correlation_steals_wins = df['Steals OVHS'].corr(df['Win_Loss_Numeric'])
+print(f"Correlation between steals and wins: {correlation_steals_wins:.2f}")
+
+#BLOCKS CORRELATION
+if 'Win_Loss_Numeric' not in df.columns:
+    df['Win_Loss_Numeric'] = df['Win/Loss'].apply(lambda x: 1 if x == 'Win' else 0)
+correlation_blocks_wins = df['Blocks OVHS'].corr(df['Win_Loss_Numeric'])
+print(f"Correlation between blocks and wins: {correlation_blocks_wins:.2f}")
+
+#FG% CORRELATION
+if 'Win_Loss_Numeric' not in df.columns:
+    df['Win_Loss_Numeric'] = df['Win/Loss'].apply(lambda x: 1 if x == 'Win' else 0)
+correlation_fg_wins = df['FG% OVHS'].corr(df['Win_Loss_Numeric'])
+print(f"Correlation between FG% and wins: {correlation_fg_wins:.2f}")
+
+#3PT% CORRELATION
+if 'Win_Loss_Numeric' not in df.columns:
+    df['Win_Loss_Numeric'] = df['Win/Loss'].apply(lambda x: 1 if x == 'Win' else 0)
+correlation_3pt_wins = df['3PT% OVHS'].corr(df['Win_Loss_Numeric'])
+print(f"Correlation between 3PT% and wins: {correlation_3pt_wins:.2f}")
+
+#FT% CORRELATION
+if 'Win_Loss_Numeric' not in df.columns:
+    df['Win_Loss_Numeric'] = df['Win/Loss'].apply(lambda x: 1 if x == 'Win' else 0)
+correlation_ft_wins = df['FT% OVHS'].corr(df['Win_Loss_Numeric'])
+print(f"Correlation between FT% and wins: {correlation_ft_wins:.2f}")
